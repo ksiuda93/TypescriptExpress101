@@ -4,14 +4,14 @@ import debug from 'debug';
 
 
 const log: debug.IDebugger = debug('app:users-controller');
-class UsersMiddleware {
 
+class UsersMiddleware {
     async validateRequiredUserBodyFields(
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
-    ){
-        if(req.body && req.body.email && req.body.password){
+    ) {
+        if (req.body && req.body.email && req.body.password) {
             next();
         }
         else {
@@ -25,9 +25,9 @@ class UsersMiddleware {
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
-    ){
+    ) {
         const user = await userService.getUserByEmail(req.body.email)
-        if(!user){
+        if (!user) {
             next();
         }
         else {
@@ -41,10 +41,10 @@ class UsersMiddleware {
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
-    ){
+    ) {
         const user = await userService.readById(req.params.userId)
 
-        if(user){
+        if (user) {
             next();
         } else {
             res.status(404).send({
@@ -57,7 +57,7 @@ class UsersMiddleware {
         req: express.Request,
         res: express.Response,
         next: express.NextFunction
-    ){
+    ) {
         req.body.id = req.params.userId;
         next();
     }

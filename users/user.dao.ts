@@ -17,7 +17,7 @@ class UserDao {
     UserSchema = new this.Schema({
         _id: String,
         email: String,
-        password: { type: String, select: false},
+        password: { type: String, select: false },
         firstName: String,
         lastName: String,
         permissionFlags: Number,
@@ -25,30 +25,30 @@ class UserDao {
 
     User = mongooseService.getMongoose().model('Users', this.UserSchema);
 
-    constructor(){
+    constructor() {
         log('Created new instance of UsersDao');
     }
 
-    async addUser(userFields: CreateUserDto){
+    async addUser(userFields: CreateUserDto) {
         const userId = shortid.generate();
         const user = new this.User({
             _id: userId,
             ...userFields,
-            permissionFlags:1
+            permissionFlags: 1
         });
         await user.save();
         return userId;
     }
 
-    async getUserByEmail(email: string){
-        return this.User.findOne({email: email}).exec();
+    async getUserByEmail(email: string) {
+        return this.User.findOne({ email: email }).exec();
     }
 
-    async getUserById(userId: string){
-        return this.User.findOne({ _id: userId}).populate('User').exec();
+    async getUserById(userId: string) {
+        return this.User.findOne({ _id: userId }).populate('User').exec();
     }
 
-    async getUsers(limit = 25, page = 0){
+    async getUsers(limit = 25, page = 0) {
         return this.User.find()
             .limit(limit)
             .skip(limit * page)
@@ -60,7 +60,7 @@ class UserDao {
         userFields: PatchUserDto | PutUserDto
     ) {
         const existingUser = await this.User.findOneAndUpdate(
-            { _id: userId},
+            { _id: userId },
             { $set: userFields },
             { new: true }
         ).exec();
@@ -71,7 +71,7 @@ class UserDao {
     async removeUserById(userId: string) {
         return this.User.deleteOne({ _id: userId }).exec();
     }
-    
+
 
 }
 

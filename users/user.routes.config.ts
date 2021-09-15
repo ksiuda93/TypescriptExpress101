@@ -11,21 +11,21 @@ export class UserRoutes extends CommonRoutesConfig {
 
     configureRoutes(): express.Application {
         this.app
-        .route('/users')
-        .get(userController.listUsers)
-        .post(
-            usersMiddleware.validateRequiredUserBodyFields,
-            usersMiddleware.checkIfEmailExistsInDatabase,
-            userController.createUser
-        )
+            .route('/users')
+            .get(userController.listUsers)
+            .post(
+                usersMiddleware.validateRequiredUserBodyFields,
+                usersMiddleware.checkIfEmailExistsInDatabase,
+                userController.createUser
+            )
 
         this.app.param(`userId`, usersMiddleware.extractUserId);
 
         this.app
-        .route('/users/:userId')
-        .all(usersMiddleware.checkIfUsersExistsInDatabase)
-        .get(userController.getUserById)
-        .delete(userController.removeUser)
+            .route('/users/:userId')
+            .all(usersMiddleware.checkIfUsersExistsInDatabase)
+            .get(userController.getUserById)
+            .delete(userController.removeUser)
 
         return this.app;
     }

@@ -32,7 +32,6 @@ if (!process.env.DEBUG) {
 
 app.use(expressWinston.logger(loggerOptions));
 
-
 routes.push(new UserRoutes(app));
 
 const runningMessage: string = `Server is running at http://localhost:${port}`;
@@ -41,9 +40,9 @@ app.get('/', (req: express.Request, res: express.Response) => {
     res.status(200).send(runningMessage)
 });
 
-server.listen(port, ()=> {
+server.listen(port, () => {
     routes.forEach((route: CommonRoutesConfig) => {
-        debugLog(`Routes configured for ${route.getName}`)
+        debugLog(`Routes configured for ${route.getName}`);
     });
     console.log(runningMessage);
 })
