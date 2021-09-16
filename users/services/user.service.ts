@@ -1,4 +1,4 @@
-import UserDao from '../user.dao';
+import UserDao from '../dao/user.dao';
 import { CRUD } from '../../common/crud.interface';
 import { CreateUserDto } from '../dto/create.user.dto';
 import { PatchUserDto } from '../dto/patch.user.dto';
@@ -35,6 +35,5 @@ class UserService implements CRUD {
     }
     
 }
-
 
 export default new UserService();

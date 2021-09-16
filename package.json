@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsc && node --unhandled-rejections=strict ./dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "stress": "artillery quick --count 10 -n 25 http://api.mas.fitatu.com:8002/api/health"
+    "stress": "artillery quick --count 10 -n 25",
+    "dev": "npx nodemon -e ts --exec \"export DEBUG=* && npm run start\""
   },
   "repository": {
     "type": "git",

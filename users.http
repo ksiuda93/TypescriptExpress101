@@ -1,1 +1,22 @@
-GET  http://localhost:3000/users
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+
+###
+
+GET  http://{{host}}/users
+
+###
+POST http://{{host}}/users HTTP/1.1
+content-type: application/json
+
+{
+    "email": "test{{$randomInt 10 1000}}@test.com",
+    "password": "haslo",
+    "firstName": "Jan",
+    "lastName": "Kowalski",
+    "permissionFlags": {{$randomInt 0 10}}
+
+}

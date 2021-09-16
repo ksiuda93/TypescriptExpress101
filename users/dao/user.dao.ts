@@ -1,7 +1,7 @@
-import mongooseService from "../common/services/mongoose.service";
-import { CreateUserDto } from "./dto/create.user.dto";
-import { PutUserDto } from "./dto/put.user.dto";
-import { PatchUserDto } from "./dto/patch.user.dto";
+import mongooseService from "../../common/services/mongoose.service";
+import { CreateUserDto } from "../dto/create.user.dto";
+import { PutUserDto } from "../dto/put.user.dto";
+import { PatchUserDto } from "../dto/patch.user.dto";
 
 import shortid from "shortid";
 import debug from "debug";
@@ -49,6 +49,9 @@ class UserDao {
     }
 
     async getUsers(limit = 25, page = 0) {
+
+        console.log(this.User)
+
         return this.User.find()
             .limit(limit)
             .skip(limit * page)
