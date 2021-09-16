@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "argon2": "^0.28.2",
+    "express-validator": "^6.12.1",
     "mongoose": "^6.0.4",
     "shortid": "^2.2.16"
   }
