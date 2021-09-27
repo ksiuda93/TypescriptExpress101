@@ -33,6 +33,10 @@ class UserService implements CRUD {
     async patchById(id: string, resource: PatchUserDto): Promise<any> {
         return UserDao.updateUserById(id, resource);
     }
+
+    async getUserByEmailWithPassword(email: string): Promise<any> {
+        return UserDao.getUserByEmailWithPassword(email);
+    }
     
 }
 
